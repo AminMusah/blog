@@ -5,13 +5,17 @@ const postRoute = require('./routes/posts');
 const app = express()
 require("./db/connect");
 
+const cors = require('cors');
+
+app.use(cors())
+
 //send json data 
 app.use(express.json())
 
 //routes
-app.use('/',userRoute)
-app.use('/',authRoute)
-app.use('/',postRoute)
+app.use('/api/',userRoute)
+app.use('/api/',authRoute)
+app.use('/api/',postRoute)
 
 
 const PORT =  process.env.PORT || 8000
