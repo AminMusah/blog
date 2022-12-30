@@ -6,18 +6,40 @@ import QuillPenLineIcon from "remixicon-react/QuillPenLineIcon";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Post() {
+
+function Posts() {
   const [posts, setPosts] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const [user, setUser] = useState("");
+
+  const userId = localStorage.getItem("user");
+
+  useEffect(() => {
+    const getUser = async () => {
+      const res = await axios.get(`/api/user/${userId}`);
+      console.log(res.data);
+      setUser(res.data.name);
+    };
+    getUser();
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get("/api/posts");
-      console.log(res.data);
       setPosts(res.data);
     };
     fetchPosts();
   }, []);
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/deletepost/${id}`, {data:{id:id}})
+      window.location.replace('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="">
       {posts.map((post) => {
@@ -33,13 +55,13 @@ function Post() {
                   className="rounded-full h-8 w-8"
                   alt=""
                 />
-                <span>username</span>
+                <span>{post.name}</span>
               </div>
 
-              <button className="flex items-center justify-center w-9 h-9 hover:bg-slate-100 rounded-full" onClick={() => setToggle((prev) => !prev)}>
+              {/* <button className="flex items-center justify-center w-9 h-9 hover:bg-slate-100 rounded-full" onClick={() => setToggle((prev) => !prev)}>
                 <MoreLineIcon size={15} />
-              </button>
-              <nav className="flex items-center absolute top-8 right-[-2rem]">
+              </button> */}
+              {/* <nav className="flex items-center absolute top-8 right-[-2rem]">
                 <div className="flex items-center">
                   <div
                     className={`${
@@ -62,11 +84,27 @@ function Post() {
                     </ul>
                   </div>
                 </div>
-              </nav>
+              </nav> */}
+              {post.name === user && (
+                <div className="list-none flex">
+                  <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl ">
+                    <span  className="flex items-center">
+                      <QuillPenLineIcon size={10} />
+                      <span className="ml-2">Edit</span>
+                    </span>
+                  </div>
+                  <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl " onClick={handleDelete}>
+                    <span className="flex items-center">
+                      <DeleteBin5FillIcon size={10} />
+                      <span className="ml-2">Delete</span>
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <Link to={`/post/${post._id}`}>
               <p>{post.post}</p>
-              <span className="text-xs">
+              <span className="text-[8px]">
                 {new Date(post.date).toDateString()}
               </span>
             </Link>
@@ -77,4 +115,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default Posts;

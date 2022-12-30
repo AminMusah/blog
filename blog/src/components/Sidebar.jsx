@@ -9,18 +9,18 @@ import { Link } from "react-router-dom"
 
 function Sidebar() {
   return (
-    <div className="flex flex-col h-full p-4">
-      <Link to="/" className="py-4 px-4 mx-auto flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
+    <div className="hidden flex-col h-full p-4 lg:flex items-end pt-20">
+      <Link to="/" className="py-4 px-4 flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
         <span><HomeLineIcon size={15}/></span>
-        <span className="pl-4">home</span>
+        <span className="pl-4">Home</span>
       </Link>
-      <Link to="/profile" className="py-4 px-4 mx-auto flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
+      <Link to="/profile" className="py-4 px-4 flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
         <span><UserLineIcon  size={15}/></span>
-        <span className="pl-4">profile</span>
+        <span className="pl-4">Profile</span>
       </Link>
-      <div className="py-4 px-4 mx-auto flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
+      <div className="py-4 px-4 flex items-center hover:bg-gray-100 mb-4 h-10 rounded-full cursor-pointer">
         <span><MoreLineIcon  size={15}/></span>
-        <span className="pl-4">more</span>
+        <span className="pl-4">More</span>
       </div>
     </div>
   );

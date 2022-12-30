@@ -12,7 +12,7 @@ const getPosts = async (req, res) => {
   }
 };
 
-//update user
+//create post
 const createPost = async (req, res) => {
     try {
       const newPost = new Post({
@@ -26,7 +26,7 @@ const createPost = async (req, res) => {
     }
   };
 
-//get user
+//get post
 const getPost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -36,7 +36,7 @@ const getPost = async (req, res) => {
   }
 };
 
-//update user
+//update post
 const updatePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
@@ -61,7 +61,7 @@ const updatePost = async (req, res) => {
   }
 };
 
-//delete user
+//delete post
 const deletePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)
