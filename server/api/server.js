@@ -1,9 +1,9 @@
 const express = require('express')
-const userRoute = require('./routes/user');
-const authRoute = require('./routes/auth');
-const postRoute = require('./routes/posts');
+const userRoute = require('../routes/user');
+const authRoute = require('../routes/auth');
+const postRoute = require('../routes/posts');
 const app = express()
-require("./db/connect");
+require("../db/connect");
 
 // const path = require('path')
 // const logger = require('morgan') 
