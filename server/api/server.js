@@ -5,13 +5,13 @@ const postRoute = require('../routes/posts');
 const app = express()
 require("../db/connect");
 
-// const path = require('path')
-// const logger = require('morgan') 
+// // const path = require('path')
+// // const logger = require('morgan') 
 const cors = require('cors');
 
-// app.use(logger('dev'))
+// // app.use(logger('dev'))
 app.use(cors())
-// app.use(express.urlencoded({extended:false}))
+// // app.use(express.urlencoded({extended:false}))
 
 //send json data 
 app.use(express.json())
@@ -20,6 +20,7 @@ app.use(express.json())
 app.use('/api/',userRoute)
 app.use('/api/',authRoute)
 app.use('/api/',postRoute)
+
 
 // app.use(express.static(path.join(__dirname, './blog/dist')))
 
