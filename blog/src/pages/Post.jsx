@@ -29,7 +29,7 @@ function Post() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(`/api/post/${id}`);
+      const res = await axios.get(`${production}/api/post/${id}`);
       setPost(res.data);
     };
     getPost();
@@ -37,7 +37,7 @@ function Post() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/deletepost/${id}`, {data:{id:id}})
+      await axios.delete(`${production}/api/deletepost/${id}`, {data:{id:id}})
       window.location.replace('/')
     } catch (error) {
       

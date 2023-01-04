@@ -17,7 +17,7 @@ function Posts() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`${production}/api/user/${userId}`);
       console.log(res.data);
       setUser(res.data.name);
     };
