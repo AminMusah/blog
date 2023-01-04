@@ -5,6 +5,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import Header from "../components/Header";
+import production from "../../base";
 
 function Profile() {
   const [user, setUser] = useState("");
@@ -13,7 +14,7 @@ function Profile() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`${production}/api/user/${userId}`);
       console.log(res.data);
       setUser(res.data.name);
     };

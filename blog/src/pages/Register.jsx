@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import production from '../../base'
 
 function Register() {
   const location = useLocation()
@@ -13,7 +14,7 @@ function Register() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      const res = await axios.post('/api/register', {
+      const res = await axios.post(`${production}/api/register`, {
         name,email,password
       })
       res.data && window.location.replace('/login')

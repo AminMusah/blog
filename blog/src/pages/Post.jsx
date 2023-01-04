@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import Header from "../components/Header";
+import production from '../../base'
+
 
 function Post() {
   const { id } = useParams();
@@ -19,7 +21,7 @@ function Post() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`${production}/api/user/${userId}`);
       setUser(res.data.name);
     };
     getUser();
@@ -59,9 +61,9 @@ function Post() {
                   <span>{post.name}</span>
                 </div>
 
-                <button className="" onClick={() => setToggle((prev) => !prev)}>
+                {/* <button className="" onClick={() => setToggle((prev) => !prev)}>
                   <MoreLineIcon size={15} />
-                </button>
+                </button> */}
 
                 {/* <nav className="flex items-center absolute top-8 right-[-2rem]">
                   <div className="flex items-center">
@@ -91,7 +93,7 @@ function Post() {
                     </div>
                   </div>
                 </nav> */}
-                {post.name === user && (
+                {/* {post.name === user && ( */}
                 <div className="list-none flex">
                   <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl ">
                     <span  className="flex items-center">
@@ -106,7 +108,7 @@ function Post() {
                     </span>
                   </div>
                 </div>
-              )}
+              {/* )} */}
               </div>
               <div>
                 <p>{post.post}</p>

@@ -2,6 +2,7 @@ import { useState,useContext } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../context/UserContext";
+import production from "../../base";
 
 function Login() {
   const location = useLocation();
@@ -9,12 +10,10 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // let msg = useContext(UserContext);
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("/api/login", {
+      const res = await axios.post(`${production}/api/login`, {
         email,
         password,
       });
@@ -22,8 +21,6 @@ function Login() {
       const userId = res.data.user._id;
       localStorage.setItem("token", token);
       localStorage.setItem("user", userId);
-      // msg = true
-      console.log(msg.user.loggedIn);
       res.data && window.location.replace("/");
     } catch (err) {
       console.log(err);

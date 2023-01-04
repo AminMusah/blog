@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import axios from 'axios'
+import production from "../../base";
 
 
 function Home() {
@@ -15,7 +16,7 @@ function Home() {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(`/api/user/${userId}`);
+      const res = await axios.get(`${production}/api/user/${userId}`);
       setUser(res.data.name);
     };
     getUser();

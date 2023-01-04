@@ -22,7 +22,7 @@ function Header() {
 
 
   return (
-    <div className="w-full border-b border-slate-100 fixed left-0 ">
+    <div className="w-full border-b border-slate-100 fixed left-0 z-10 ">
       <div className="lg:w-2/3 mx-auto flex  justify-between py-6 lg:px-8 px-4 items-center h-[40px] bg-white z-20">
         <h1>
           <Link to="/">Blog.</Link>
