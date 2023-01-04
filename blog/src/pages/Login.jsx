@@ -1,7 +1,6 @@
 import { useState,useContext } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { UserContext } from "../context/UserContext";
 import production from "../../base";
 
 function Login() {
