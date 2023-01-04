@@ -5,6 +5,7 @@ import DeleteBin5FillIcon from "remixicon-react/DeleteBin5FillIcon";
 import QuillPenLineIcon from "remixicon-react/QuillPenLineIcon";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import production from "../../base";
 
 
 function Posts() {
@@ -25,7 +26,7 @@ function Posts() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("/api/posts");
+      const res = await axios.get(`${production}/api/posts`);
       setPosts(res.data);
     };
     fetchPosts();
@@ -33,7 +34,7 @@ function Posts() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/deletepost/${id}`, {data:{id:id}})
+      await axios.delete(`${production}/api/deletepost/${id}`, {data:{id:id}})
       window.location.replace('/')
     } catch (error) {
       console.log(error)

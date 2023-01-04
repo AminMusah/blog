@@ -25,7 +25,7 @@ function Home() {
   const create = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("/api/createpost", {
+      const res = await axios.post(`${production}/api/createpost`, {
         name: user,
         post: createPost,
       });
