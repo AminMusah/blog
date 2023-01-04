@@ -8,8 +8,6 @@ import { useContext } from "react";
 import UserProvider, { UserContext } from "./context/UserContext";
 
 function App() {
-  const  msg  = useContext(UserContext);
-  console.log(msg)
 
   return (
     <UserProvider>
