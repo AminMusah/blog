@@ -11,12 +11,14 @@ import { UserContext } from "../context/UserContext";
 function Header() {
   const [toggle, setToggle] = useState(false);
 
-  let msg = useContext(UserContext);
+  let {auth,setAuth} = useContext(UserContext);
 
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    msg = true
+    setAuth(prevState => false)
+    localStorage.removeItem("auth", auth);
+
     window.location.replace("/login");
   };
 
@@ -47,7 +49,7 @@ function Header() {
               }  bg-slate-200 mx-4 my-2 rounded-xl sidebar`}
             >
               <ul className="list-none flex flex-col">
-                {msg.user.loggedIn ? (
+                {auth ? (
                   <li className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-xl  ">
                     <a href="#" className="flex items-center">
                       <LogoutBoxLineIcon size={10} />

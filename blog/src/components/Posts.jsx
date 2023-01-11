@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import production from "../../base";
 
 
-function Posts() {
+function Posts({loading, setLoading}) {
   const [posts, setPosts] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState("");
@@ -18,7 +18,6 @@ function Posts() {
   useEffect(() => {
     const getUser = async () => {
       const res = await axios.get(`${production}/api/user/${userId}`);
-      console.log(res.data);
       setUser(res.data.name);
     };
     getUser();
@@ -26,7 +25,10 @@ function Posts() {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setLoading(true)
       const res = await axios.get(`${production}/api/posts`);
+      console.log(res.data);
+      res.data.length > 0 ? setLoading(false) : setLoading(true) 
       setPosts(res.data);
     };
     fetchPosts();
@@ -42,7 +44,7 @@ function Posts() {
   }
 
   return (
-    <div className="">
+    <div className="w-full">
       {posts.map((post) => {
         return (
           <div

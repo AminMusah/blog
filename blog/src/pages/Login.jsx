@@ -1,17 +1,24 @@
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import production from "../../base";
+import { UserContext } from "../context/UserContext";
+import MiniLoader from "../components/MiniLoader";
 
 function Login() {
+  let { auth, setAuth } = useContext(UserContext);
+  // console.log(auth)
+
   const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState("");
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true)
       const res = await axios.post(`${production}/api/login`, {
         email,
         password,
@@ -20,6 +27,10 @@ function Login() {
       const userId = res.data.user._id;
       localStorage.setItem("token", token);
       localStorage.setItem("user", userId);
+
+      setAuth((prevState) => true);
+      localStorage.setItem("auth", auth);
+      // console.log(auth)
       res.data && window.location.replace("/");
     } catch (err) {
       console.log(err);
@@ -99,9 +110,10 @@ function Login() {
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out"
+      ease-in-out flex items-center justify-center"
           >
-            Login
+            {loading ? <MiniLoader /> : ""}
+            <span className="ml-2">Login</span>
           </button>
         </form>
       </div>

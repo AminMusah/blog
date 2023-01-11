@@ -5,20 +5,22 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Post from "./pages/Post";
 import { useContext } from "react";
-import UserProvider, { UserContext } from "./context/UserContext";
+import { UserContext } from "./context/UserContext";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
+  let {auth,setAuth} = useContext(UserContext)
+  console.log(auth,'App')
 
   return (
-    <UserProvider>
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={ auth ? <Home /> : <PageNotFound/> }/> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/post/:id" element={<Post />} />
       </Routes>
-    </UserProvider>
   );
 }
 

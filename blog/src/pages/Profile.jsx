@@ -8,6 +8,9 @@ import Header from "../components/Header";
 import production from "../../base";
 
 function Profile() {
+  const { auth } = useContext(UserContext)
+  console.log(auth);
+
   const [user, setUser] = useState("");
 
   const userId = localStorage.getItem("user");
@@ -21,14 +24,11 @@ function Profile() {
     getUser();
   }, []);
 
-  const msg = useContext(UserContext);
-  console.log(msg.user.loggedIn);
-
   return (
     <div className="flex">
       <Header/>
       <Sidebar />
-      <div className="pt-20">profile : {user}</div>
+      <div className="pt-20">profile : {user} </div>
     </div>
   );
 }

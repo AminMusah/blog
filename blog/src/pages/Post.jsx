@@ -11,7 +11,7 @@ import Header from "../components/Header";
 import production from '../../base'
 
 
-function Post() {
+function Post({loading, setLoading}) {
   const { id } = useParams();
   const [post, setPost] = useState([]);
   const [toggle, setToggle] = useState(false);
@@ -30,6 +30,8 @@ function Post() {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(`${production}/api/post/${id}`);
+      // console.log(res.data.post.length);
+      // res.data.post.length > 0 ? setLoading(false) : setLoading(true)
       setPost(res.data);
     };
     getPost();
@@ -44,10 +46,10 @@ function Post() {
     }
   }
   return (
-    <div className="flex w-5/6 mx-auto">
+    <div className="flex lg:w-5/6 lg:mx-auto">
       <Header/>
       <Sidebar />
-      <section className="flex flex-col w-full border-x border-slate-100 p-2 pt-20">
+      <section className="flex flex-col w-full lg:border-x lg:border-slate-100 p-2 pt-20">
         <div className="flex flex-col">
           <div>
             <div className="flex flex-col border border-slate-100 p-3 rounded-xl mb-4">
