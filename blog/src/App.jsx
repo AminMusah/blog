@@ -9,13 +9,11 @@ import { UserContext } from "./context/UserContext";
 import PageNotFound from "./pages/PageNotFound";
 
 function App() {
-  let {auth,setAuth} = useContext(UserContext)
-  console.log(auth,'App')
+  let {isAuth} = useContext(UserContext)
 
   return (
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/" element={ auth ? <Home /> : <PageNotFound/> }/> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

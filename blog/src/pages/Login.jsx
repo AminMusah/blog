@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 import MiniLoader from "../components/MiniLoader";
 
 function Login() {
-  let { auth, setAuth } = useContext(UserContext);
+  let { isAuth, setIsAuth } = useContext(UserContext);
   // console.log(auth)
 
   const location = useLocation();
@@ -28,8 +28,7 @@ function Login() {
       localStorage.setItem("token", token);
       localStorage.setItem("user", userId);
 
-      setAuth((prevState) => true);
-      localStorage.setItem("auth", auth);
+      setIsAuth(true);
       // console.log(auth)
       res.data && window.location.replace("/");
     } catch (err) {

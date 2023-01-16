@@ -10,8 +10,7 @@ import Loader from "../components/Loader";
 import { UserContext } from "../context/UserContext";
 
 function Home() {
-  let {auth} = useContext(UserContext)
-  console.log(auth)
+  let {isAuth} = useContext(UserContext)
 
   const [createPost, setCreatePost] = useState("");
   const [user, setUser] = useState("");
@@ -45,7 +44,8 @@ function Home() {
       <Header />
       <Sidebar />
       <section className="flex flex-col w-full border-x border-slate-100 p-2 pt-20">
-        <div className="flex items-start ">
+
+        {isAuth ? <div className="flex items-start ">
           <img
             src="/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
             alt=""
@@ -67,7 +67,8 @@ function Home() {
               Post
             </button>
           </div>
-        </div>
+        </div> : ""}
+        
         <div className="flex items-center flex-col">
           {loading && <Loader />}
           <Post setLoading={setLoading} loading={loading}/>

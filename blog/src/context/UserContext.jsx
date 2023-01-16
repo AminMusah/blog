@@ -3,10 +3,17 @@ import { createContext, useState,useEffect } from "react";
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [auth, setAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(() => {
+    const storedValue = localStorage.getItem('isAuth');
+    return storedValue ? JSON.parse(storedValue) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isAuth', JSON.stringify(isAuth));
+  }, [isAuth]);
 
   return (
-    <UserContext.Provider value={{auth,setAuth}}>
+    <UserContext.Provider value={{isAuth,setIsAuth}}>
       {children}
     </UserContext.Provider>
   );
