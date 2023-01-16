@@ -14,10 +14,10 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={ isAuth ? <Profile /> : <Login /> } />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/post/:id" element={isAuth ? <Post /> : <Login />} />
       </Routes>
   );
 }
