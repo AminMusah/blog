@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import production from "../../base";
 import { UserContext } from "../context/UserContext";
@@ -9,7 +9,7 @@ function Login() {
   let { isAuth, setIsAuth } = useContext(UserContext);
   // console.log(auth)
 
-  const location = useLocation();
+  const location = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +18,7 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      setLoading(true)
+      setLoading(true);
       const res = await axios.post(`${production}/api/login`, {
         email,
         password,
@@ -29,16 +29,30 @@ function Login() {
       localStorage.setItem("user", userId);
 
       setIsAuth(true);
-      // console.log(auth)
-      res.data && window.location.replace("/");
+      res.data && location("/");
     } catch (err) {
       console.log(err);
+      setLoading(false);
       setError(err.response.data.message);
     }
   };
   return (
     <div className="flex justify-center items-center h-screen  my-auto">
-      <div className=" p-6 rounded-lg shadow-lg bg-white max-w-sm ">
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div className="absolute p-6 rounded-lg shadow-lg bg-white max-w-sm ">
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-6">
             <input
@@ -114,6 +128,16 @@ function Login() {
             {loading ? <MiniLoader /> : ""}
             <span className="ml-2">Login</span>
           </button>
+          <div className="flex items-center mt-3">
+            {" "}
+            <p className="text-xs"> Don't have an account? </p>{" "}
+            <Link
+              to="/register"
+              className="text-xs text-blue-900 ml-[5px] font-bold"
+            >
+              Register
+            </Link>
+          </div>
         </form>
       </div>
     </div>

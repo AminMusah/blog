@@ -4,11 +4,12 @@ import LogoutBoxLineIcon from "remixicon-react/LogoutBoxLineIcon";
 import DeleteBin5FillIcon from "remixicon-react/DeleteBin5FillIcon";
 import QuillPenLineIcon from "remixicon-react/QuillPenLineIcon";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import production from "../../base";
 
 
 function Posts({loading, setLoading}) {
+  let location = useNavigate()
   const [posts, setPosts] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState("");
@@ -37,18 +38,18 @@ function Posts({loading, setLoading}) {
   const handleDelete = async () => {
     try {
       await axios.delete(`${production}/api/deletepost/${id}`, {data:{id:id}})
-      window.location.replace('/')
+      location('/')
     } catch (error) {
       console.log(error)
     }
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {posts.map((post) => {
         return (
           <div
-            className="flex flex-col border border-slate-100 p-3 rounded-xl mb-4"
+            className="flex flex-col border border-[#9499fe] p-3 rounded-xl mb-4 bg-[#999ef9] "
             key={post._id}
           >
             <div className="flex pb-2 justify-between relative">
@@ -58,7 +59,7 @@ function Posts({loading, setLoading}) {
                   className="rounded-full h-8 w-8"
                   alt=""
                 />
-                <span>{post.name}</span>
+                <span className="ml-2">{post.name}</span>
               </div>
 
               {/* <button className="flex items-center justify-center w-9 h-9 hover:bg-slate-100 rounded-full" onClick={() => setToggle((prev) => !prev)}>

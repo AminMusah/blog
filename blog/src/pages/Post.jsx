@@ -8,14 +8,15 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Widgets from "../components/Widgets";
 import Header from "../components/Header";
-import production from '../../base'
+import production from "../../base";
 
-
-function Post({loading, setLoading}) {
+function Post({ loading, setLoading }) {
   const { id } = useParams();
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState("");
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState("");
+  const [update, setUpdate] = useState(false);
+  const [newPost, setNewPost] = useState(false);
 
   const userId = localStorage.getItem("user");
 
@@ -30,29 +31,39 @@ function Post({loading, setLoading}) {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(`${production}/api/post/${id}`);
-      // console.log(res.data.post.length);
-      // res.data.post.length > 0 ? setLoading(false) : setLoading(true)
       setPost(res.data);
+      setNewPost(res.data.post);
+      console.log(res.data.post);
     };
     getPost();
   }, []);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${production}/api/deletepost/${id}`, {data:{id:id}})
-      window.location.replace('/')
+      await axios.delete(`${production}/api/deletepost/${id}`, {
+        data: { id: id },
+      });
+      window.location.replace("/");
+    } catch (error) {}
+  };
+
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`${production}/api/updatepost/${id}`, {
+        data: { name:user.name, id:id },
+      });
     } catch (error) {
-      
+      console.log(error)
     }
-  }
+  };
   return (
     <div className="flex lg:w-5/6 lg:mx-auto">
-      <Header/>
+      <Header />
       <Sidebar />
-      <section className="flex flex-col w-full lg:border-x lg:border-slate-100 p-2 pt-20">
+      <section className="flex flex-col w-full z-20 p-2 pt-20">
         <div className="flex flex-col">
           <div>
-            <div className="flex flex-col border border-slate-100 p-3 rounded-xl mb-4">
+            <div className="flex flex-col w-4/6 mx-auto bg-[#999ef9] p-3 rounded-xl mb-4">
               <div className="flex pb-2 justify-between relative">
                 <div className="flex pb-2 ">
                   <img
@@ -97,24 +108,49 @@ function Post({loading, setLoading}) {
                 </nav> */}
                 {/* {post.name === user && ( */}
                 <div className="list-none flex">
-                  <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl ">
-                    <span  className="flex items-center">
+                  <div
+                    className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9]  w-full rounded-3xl "
+                    onClick={() => {
+                      setUpdate(true);
+                    }}
+                  >
+                    <span className="flex items-center">
                       <QuillPenLineIcon size={10} />
                       <span className="ml-2">Edit</span>
                     </span>
                   </div>
-                  <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl " onClick={handleDelete}>
+                  <div
+                    className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9]  w-full rounded-3xl "
+                    onClick={handleDelete}
+                  >
                     <span className="flex items-center">
                       <DeleteBin5FillIcon size={10} />
                       <span className="ml-2">Delete</span>
                     </span>
                   </div>
                 </div>
-              {/* )} */}
+                {/* )} */}
               </div>
-              <div>
-                <p>{post.post}</p>
-                <span className="text-xs">
+              <div className="flex flex-col">
+                {update ? (
+                  <input
+                    value={newPost}
+                    className="h-16 p-2 bg-transparent border-0 outline-0"
+                    autoFocus
+                    onChange={(e) => setNewPost(e.target.value)}
+                    
+                  />
+                ) : (
+                  <p>{post.post}</p>
+                )}
+                {update ? (
+                  <button className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center border-[#9499fe] hover:border-[#999ef9] w-1/3 mt-4 rounded-3xl" onClick={handleUpdate}>
+                    Update
+                  </button>
+                ) : (
+                  ""
+                )}
+                <span className="text-xs mt-2">
                   {new Date(post.date).toDateString()}
                 </span>
               </div>
