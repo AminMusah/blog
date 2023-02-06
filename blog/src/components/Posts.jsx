@@ -4,12 +4,11 @@ import LogoutBoxLineIcon from "remixicon-react/LogoutBoxLineIcon";
 import DeleteBin5FillIcon from "remixicon-react/DeleteBin5FillIcon";
 import QuillPenLineIcon from "remixicon-react/QuillPenLineIcon";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import production from "../../base";
 
-
-function Posts({loading, setLoading}) {
-  let location = useNavigate()
+function Posts({ loading, setLoading }) {
+  let location = useNavigate();
   const [posts, setPosts] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [user, setUser] = useState("");
@@ -26,10 +25,10 @@ function Posts({loading, setLoading}) {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.get(`${production}/api/posts`);
       console.log(res.data);
-      res.data.length > 0 ? setLoading(false) : setLoading(true) 
+      res.data.length > 0 ? setLoading(false) : setLoading(true);
       setPosts(res.data);
     };
     fetchPosts();
@@ -37,12 +36,12 @@ function Posts({loading, setLoading}) {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`${production}/api/deletepost/${id}`, {data:{id:id}})
-      location('/')
-    } catch (error) {
-      console.log(error)
-    }
-  }
+      await axios.delete(`${production}/api/deletepost/${id}`, {
+        data: { id: id },
+      });
+      window.location.replace("/");
+    } catch (error) {}
+  };
 
   return (
     <div className="w-full ">
@@ -89,22 +88,27 @@ function Posts({loading, setLoading}) {
                   </div>
                 </div>
               </nav> */}
-              {post.name === user && (
+              {/* {post.name === user && (
                 <div className="list-none flex">
                   <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl ">
-                    <span  className="flex items-center">
+                    <span className="flex items-center">
                       <QuillPenLineIcon size={10} />
                       <span className="ml-2">Edit</span>
                     </span>
                   </div>
-                  <div className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl " onClick={handleDelete}>
+                  <div
+                    className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-slate-100 w-full rounded-3xl "
+                    onClick={handleDelete}
+                  >
                     <span className="flex items-center">
                       <DeleteBin5FillIcon size={10} />
-                      <span className="ml-2">Delete</span>
+                      <span className="ml-2" onClick={handleDelete}>
+                        Delete
+                      </span>
                     </span>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
             <Link to={`/post/${post._id}`}>
               <p>{post.post}</p>
