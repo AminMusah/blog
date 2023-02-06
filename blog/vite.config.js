@@ -6,7 +6,7 @@ export default defineConfig({
   server:{
     proxy: {
       "/api":{
-        target: "https://server-nine-kappa.vercel.app/",
+        target: "https://localhost:8000",
         changeOrigin: true,
         secure: false,
       },

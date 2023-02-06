@@ -50,8 +50,9 @@ function Post({ loading, setLoading }) {
   const handleUpdate = async () => {
     try {
       await axios.put(`${production}/api/updatepost/${id}`, {
-        data: { name:user.name, id:id },
+        name:user.name, id:id, post: user.post,
       });
+      
     } catch (error) {
       console.log(error)
     }
