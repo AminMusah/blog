@@ -49,7 +49,7 @@ function Post({ loading, setLoading }) {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:8000/api/updatepost/${id}`,
+        `${production}/api/updatepost/${id}`,
       {
           id: id,
           name: user.name,
