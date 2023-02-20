@@ -48,14 +48,11 @@ function Post({ loading, setLoading }) {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `${production}/api/updatepost/${id}`,
-      {
-          id: id,
-          name: user.name,
-          post: newPost,
-        }
-      );
+      await axios.put(`${production}/api/updatepost/${id}`, {
+        id: id,
+        name: user.name,
+        post: newPost,
+      });
 
       window.location.reload();
     } catch (error) {
@@ -149,12 +146,20 @@ function Post({ loading, setLoading }) {
                   <p>{post.post}</p>
                 )}
                 {update ? (
-                  <button
-                    className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center border-[#9499fe] hover:border-[#999ef9] w-1/3 mt-4 rounded-3xl"
-                    onClick={handleUpdate}
-                  >
-                    Update
-                  </button>
+                  <div className="flex ">
+                    <button
+                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center bg-[#868cf7] border-[#9499fe] hover:border-[#abaffb] w-1/3 mt-4 rounded-3xl"
+                      onClick={handleUpdate}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center bg-[#868cf7] border-[#9499fe] hover:border-[#abaffb] w-1/3 mt-4 rounded-3xl"
+                      onClick={()=>{setUpdate(false)}}
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 ) : (
                   ""
                 )}
