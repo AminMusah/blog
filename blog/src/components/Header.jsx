@@ -36,17 +36,16 @@ function Header() {
   };
 
   return (
-    <div className="w-full z-30 bg-[#8f94fb] border-b border-[#999ef9] fixed left-0 ">
+    <div className="w-full z-30 border-b bg-white fixed left-0 ">
       <div className="lg:w-2/3 mx-auto flex  justify-between py-6 lg:px-8 px-4 items-center h-[40px] z-20">
         <h1>
           <Link to="/">Blog.</Link>
         </h1>
-      
 
         <div className="w-1/2 mx-auto h-[35px] flex items-center relative">
           <input
             type="text"
-            className="container h-full rounded-full bg-transparent outline-none border border-[#999ef9] pl-12"
+            className="container h-full rounded-full bg-transparent outline-none border  pl-12"
           />
           <button className="absolute p-4  text-slate-500 ">
             <SearchLineIcon size={15} />
@@ -55,44 +54,47 @@ function Header() {
         <button className="" onClick={() => setToggle((prev) => !prev)}>
           <MoreLineIcon />
         </button>
-        
+
         <nav className="flex items-center absolute top-10 lg:right-[15rem] right-2">
           <div className="flex items-center">
             <div
               className={`${
                 toggle ? "flex" : "hidden"
-              }  bg-transparent mx-4 my-2 rounded-xl sidebar`}
+              }  bg-black mx-4 my-3 rounded-xl sidebar`}
             >
               <ul className="list-none flex flex-col">
                 {isAuth ? (
                   <div>
-                    <li className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9] w-full rounded-xl  ">
+                    <li className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#0d1117] w-full rounded-xl  ">
                       <a href="#" className="flex items-center">
-                        <LogoutBoxLineIcon size={10} />
-                        <span className="ml-2" onClick={handleLogout}>
+                        <LogoutBoxLineIcon size={10} color="white" />
+                        <span
+                          className="ml-2 text-white"
+                          onClick={handleLogout}
+                        >
                           Log out
                         </span>
                       </a>{" "}
                     </li>
-                    <li className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9] w-full rounded-xl  ">
+                    <li className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#0d1117] w-full rounded-xl  ">
                       <Link to="/profile" className="flex items-center">
-                        <UserLineIcon size={10} />
-                        <span className="ml-2">Profile</span>
+                        <UserLineIcon size={10} color="white" />
+                        <span className="ml-2 text-white">Profile</span>
                       </Link>{" "}
                     </li>
                   </div>
                 ) : (
                   <div>
-                    <li className="font-normal cursor-pointer text-[10px] mb-4 py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9] w-full rounded-xl  ">
+                    <li className="font-normal cursor-pointer text-[10px] mb-4 py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#0d1117] w-full rounded-xl  ">
                       <Link to="/register" className="flex items-center">
-                        <Edit2LineIcon size={10} />
-                        <span className="ml-2">Register</span>
+                        <Edit2LineIcon size={10} color="white" />
+                        <span className="ml-2 text-white">Register</span>
                       </Link>{" "}
                     </li>
-                    <li className="font-normal cursor-pointer text-[10px] mb-4 py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9] w-full rounded-xl  ">
+                    <li className="font-normal cursor-pointer text-[10px] mb-4 py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#0d1117] w-full rounded-xl  ">
                       <Link to="/login" className="flex items-center">
-                        <LoginCircleLineIcon size={10} />
-                        <span className="ml-2">Login</span>
+                        <LoginCircleLineIcon size={10} color="white" />
+                        <span className="ml-2 text-white">Login</span>
                       </Link>{" "}
                     </li>
                   </div>

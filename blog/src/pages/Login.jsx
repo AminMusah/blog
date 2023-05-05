@@ -37,19 +37,21 @@ function Login() {
     }
   };
   return (
-    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#0d1117] py-6 sm:py-12">
-      <div class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
-        <div class="w-full">
-          <div class="text-center">
-            <h1 class="text-3xl font-semibold text-gray-900">Welcome back</h1>
-            <p class="mt-2 text-gray-500">
+    <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#0d1117] py-6 sm:py-12">
+      <div className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
+        <div className="w-full">
+          <div className="text-center">
+            <h1 className="text-3xl font-semibold text-gray-900">
+              Welcome back
+            </h1>
+            <p className="mt-2 text-gray-500">
               Sign in below to access your account
             </p>
           </div>
-          <div class="mt-8">
-            <form action="" class="group" onSubmit={handleSubmit}>
-              <div class="mb-6">
-                <label for="email" class="mb-2 block text-sm text-gray-600">
+          <div className="mt-8">
+            <form action="" className="group" onSubmit={handleSubmit}>
+              <div className="mb-6">
+                <label for="email" className="mb-2 block text-sm text-gray-600">
                   Email Address
                 </label>
                 <input
@@ -57,16 +59,16 @@ function Login() {
                   name="email"
                   id="email"
                   placeholder="you@company.com"
-                  class="w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                  className="w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                   autocomplete="off"
                   required
                   pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div class="mb-6">
-                <div class="mb-2 flex justify-between">
-                  <label for="password" class="text-sm text-gray-600">
+              <div className="mb-6">
+                <div className="mb-2 flex justify-between">
+                  <label for="password" className="text-sm text-gray-600">
                     Password
                   </label>
                   {/* <a
@@ -82,7 +84,7 @@ function Login() {
                   name="password"
                   id="password"
                   placeholder="Your Password"
-                  class="peer w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                  className="peer w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
                   pattern=".{6,}"
                   required
                   onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +103,7 @@ function Login() {
                 {loading ? (
                   <MiniLoader />
                 ) : (
-                  <div class="text-white">Sign in</div>
+                  <div className="text-white">Sign in</div>
                 )}
               </button>
 
@@ -109,7 +111,7 @@ function Login() {
                 Don&#x27;t have an account yet?{" "}
                 <Link
                   to="/register"
-                  class="font-semibold text-black focus:text-black focus:underline focus:outline-none"
+                  className="font-semibold text-black focus:text-black focus:underline focus:outline-none"
                 >
                   Sign up
                 </Link>

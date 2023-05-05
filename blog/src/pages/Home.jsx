@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import Post from "../components/Posts";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
-import Widgets from "../components/Widgets";
 import axios from "axios";
 import production from "../../base";
 import Loader from "../components/Loader";
@@ -57,21 +56,25 @@ function Home() {
               alt=""
               className="rounded-full h-8 w-8  mr-2"
             />
-            <div className="flex justify-end items-end h-32 flex-col w-full">
+            <div className="h-64 flex justify-end items-end flex-col w-full">
               <input
                 type="text"
                 name=""
                 id=""
-                className="h-full w-full bg-transparent outline-none rounded text-black"
+                className="h-full w-full bg-transparent outline-none text-black border-b"
                 placeholder="What's happening?"
                 autoFocus
                 onChange={(e) => setCreatePost(e.target.value)}
               />
               <button
-                className="flex items-center justify-center h-28 w-28 bg-[#999ef9] hover:bg-[#9399fd] font-poppins font-medium text-[15px] text-primary outline-none mt-8 mb-6 rounded-[10px]"
+                className="flex items-center justify-center h-28 w-28 bg-black hover:bg-[#1d2127] group-invalid:bg-[#161b22] font-poppins font-medium text-[15px] text-primary outline-none mt-8 mb-6 rounded-[10px]"
                 onClick={create}
               >
-                {miniloading ? <MiniLoader /> : <span>Post</span>}
+                {miniloading ? (
+                  <MiniLoader />
+                ) : (
+                  <span className="text-white">Post</span>
+                )}
               </button>
             </div>
           </div>
@@ -84,7 +87,6 @@ function Home() {
           <Post setLoading={setLoading} loading={loading} />
         </div>
       </section>
-      <Widgets />
     </div>
   );
 }
