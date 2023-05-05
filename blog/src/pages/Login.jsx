@@ -37,108 +37,87 @@ function Login() {
     }
   };
   return (
-    <div className="flex justify-center items-center h-screen  my-auto">
-      <div class="area">
-        <ul class="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <div className="absolute p-6 rounded-lg shadow-lg bg-white max-w-sm ">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group mb-6">
-            <input
-              type="email"
-              className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Email address"
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#0d1117] py-6 sm:py-12">
+      <div class="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
+        <div class="w-full">
+          <div class="text-center">
+            <h1 class="text-3xl font-semibold text-gray-900">Welcome back</h1>
+            <p class="mt-2 text-gray-500">
+              Sign in below to access your account
+            </p>
           </div>
-          <div className="form-group mb-6">
-            <input
-              type="password"
-              className="form-control block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-gray-700
-        bg-white bg-clip-padding
-        border border-solid border-gray-300
-        rounded
-        transition
-        ease-in-out
-        m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Password"
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          {error ? (
-            <div className="inline-block text-red-800 text-xs">{error}</div>
-          ) : (
-            ""
-          )}
+          <div class="mt-8">
+            <form action="" class="group" onSubmit={handleSubmit}>
+              <div class="mb-6">
+                <label for="email" class="mb-2 block text-sm text-gray-600">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="you@company.com"
+                  class="w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                  autocomplete="off"
+                  required
+                  pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div class="mb-6">
+                <div class="mb-2 flex justify-between">
+                  <label for="password" class="text-sm text-gray-600">
+                    Password
+                  </label>
+                  {/* <a
+                    href="#!"
+                    tabindex="-1"
+                    class="text-sm text-gray-400 hover:text-indigo-500 focus:text-indigo-500 focus:outline-none"
+                  >
+                    Forgot password?
+                  </a> */}
+                </div>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Your Password"
+                  class="peer w-full rounded-md border border-gray-300 px-3 py-2.5 placeholder-gray-300 shadow shadow-gray-100 focus:border-gray-500 focus:outline-none valid:[&:not(:placeholder-shown)]:border-green-500 [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400"
+                  pattern=".{6,}"
+                  required
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                {error ? (
+                  <div className="mt-2 text-xs text-red-400">{error}</div>
+                ) : (
+                  ""
+                )}
+              </div>
 
-          <button
-            type="submit"
-            className="
-      w-full
-      px-6
-      py-2.5
-      bg-slate-100
-      text-black
-      font-medium
-      text-xs
-      leading-tight
-      uppercase
-      rounded
-      shadow-md
-      hover:bg-blue-700 hover:shadow-lg
-      focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-      active:bg-blue-800 active:shadow-lg
-      transition
-      duration-150
-      ease-in-out flex items-center justify-center"
-          >
-            {loading ? <MiniLoader /> : ""}
-            <span className="ml-2">Login</span>
-          </button>
-          <div className="flex items-center mt-3">
-            {" "}
-            <p className="text-xs"> Don't have an account? </p>{" "}
-            <Link
-              to="/register"
-              className="text-xs text-blue-900 ml-[5px] font-bold"
-            >
-              Register
-            </Link>
+              <button
+                type="submit"
+                className="mb-6 w-full flex items-center justify-center rounded-md px-3 py-3 h-12  bg-black focus:outline-none group-invalid:pointer-events-none group-invalid:bg-[#161b22]"
+              >
+                {loading ? (
+                  <MiniLoader />
+                ) : (
+                  <div class="text-white">Sign in</div>
+                )}
+              </button>
+
+              <p className="text-center text-sm text-gray-500">
+                Don&#x27;t have an account yet?{" "}
+                <Link
+                  to="/register"
+                  class="font-semibold text-black focus:text-black focus:underline focus:outline-none"
+                >
+                  Sign up
+                </Link>
+                .
+              </p>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
