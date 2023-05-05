@@ -6,7 +6,6 @@ import DeleteBin5FillIcon from "remixicon-react/DeleteBin5FillIcon";
 import QuillPenLineIcon from "remixicon-react/QuillPenLineIcon";
 import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-import Widgets from "../components/Widgets";
 import Header from "../components/Header";
 import production from "../../base";
 
@@ -65,8 +64,8 @@ function Post({ loading, setLoading }) {
       <Sidebar />
       <section className="flex flex-col w-full z-20 p-2 pt-20 sm:w-4/6 mx-auto">
         <div className="flex flex-col">
-          <div className=" ">
-            <div className="flex flex-col bg-[#999ef9] p-3 rounded-xl mb-4">
+          <div>
+            <div className="flex flex-col p-3 rounded-xl mb-4 border">
               <div className="flex pb-2 justify-between relative">
                 <div className="flex pb-2 ">
                   <img
@@ -112,7 +111,7 @@ function Post({ loading, setLoading }) {
                 {post.name === user && (
                   <div className="list-none flex">
                     <div
-                      className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9]  w-full rounded-3xl "
+                      className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:text-white hover:bg-[#1d2127]  w-full rounded-3xl "
                       onClick={() => {
                         setUpdate(true);
                       }}
@@ -123,7 +122,7 @@ function Post({ loading, setLoading }) {
                       </span>
                     </div>
                     <div
-                      className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:bg-[#999ef9]  w-full rounded-3xl "
+                      className="font-normal cursor-pointer text-[10px] py-2 px-4 mx-auto flex justify-center items-center hover:text-white  hover:bg-[#1d2127]  w-full rounded-3xl "
                       onClick={handleDelete}
                     >
                       <span className="flex items-center">
@@ -148,14 +147,16 @@ function Post({ loading, setLoading }) {
                 {update ? (
                   <div className="flex ">
                     <button
-                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center bg-[#868cf7] border-[#9499fe] hover:border-[#abaffb] w-1/3 mt-4 rounded-3xl"
+                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center text-white bg-[#1d2127] border-[#1a1b26] hover:border-[#161b22] w-1/3 mt-4 rounded-3xl"
                       onClick={handleUpdate}
                     >
                       Update
                     </button>
                     <button
-                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center bg-[#868cf7] border-[#9499fe] hover:border-[#abaffb] w-1/3 mt-4 rounded-3xl"
-                      onClick={()=>{setUpdate(false)}}
+                      className="font-normal cursor-pointer text-8 mb-4 py-2 px-4 mx-auto flex justify-center items-center text-white bg-[#1d2127] border-[#1a1b26] hover:border-[#161b22] w-1/3 mt-4 rounded-3xl"
+                      onClick={() => {
+                        setUpdate(false);
+                      }}
                     >
                       Cancel
                     </button>
@@ -171,7 +172,6 @@ function Post({ loading, setLoading }) {
           </div>
         </div>
       </section>
-      <Widgets />
     </div>
   );
 }

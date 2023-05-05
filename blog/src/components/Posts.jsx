@@ -27,7 +27,6 @@ function Posts({ loading, setLoading }) {
     const fetchPosts = async () => {
       setLoading(true);
       const res = await axios.get(`${production}/api/posts`);
-      console.log(res.data);
       res.data.length > 0 ? setLoading(false) : setLoading(true);
       setPosts(res.data);
     };
@@ -47,8 +46,9 @@ function Posts({ loading, setLoading }) {
     <div className="w-full ">
       {posts.map((post) => {
         return (
-          <div
-            className="flex flex-col border border-[#9499fe] p-3 rounded-xl mb-4 bg-[#999ef9] "
+          <Link
+            to={`/post/${post._id}`}
+            className="flex flex-col border p-3 rounded-xl mb-4"
             key={post._id}
           >
             <div className="flex pb-2 justify-between relative">
@@ -110,13 +110,13 @@ function Posts({ loading, setLoading }) {
                 </div>
               )} */}
             </div>
-            <Link to={`/post/${post._id}`}>
+            <div>
               <p>{post.post}</p>
               <span className="text-[8px]">
                 {new Date(post.date).toDateString()}
               </span>
-            </Link>
-          </div>
+            </div>
+          </Link>
         );
       })}
     </div>
